@@ -1,7 +1,7 @@
 // frontend/src/ProductForm.js
 import React, { useState } from 'react';
 
-function ProductForm({ onProductCreated }) {
+function ProductForm({ user, onProductCreated }) {
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
   const [value, setValue] = useState('');
@@ -16,6 +16,7 @@ function ProductForm({ onProductCreated }) {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
+          user_id: user.id, // associa o produto ao usuário logado
           name,
           description,
           value,
@@ -39,6 +40,7 @@ function ProductForm({ onProductCreated }) {
       </div>
       <div className="card-body">
         <form onSubmit={handleSubmit}>
+          {/* campos do formulário */}
           <div className="mb-3">
             <label className="form-label">Nome do produto</label>
             <input

@@ -19,7 +19,7 @@ function Login({ onLogin, toggleForm }) {
       const data = await response.json();
 
       if (response.ok) {
-        onLogin();
+        onLogin(data.user); // passa o objeto { id, username }
       } else {
         setError(data.error);
       }
